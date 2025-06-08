@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú Digital Bahía</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="menu-header">
+    <!-- HEADER TOP -->
+    <div class="header-top">
+      <span>Call now: <strong>+1 234 567 8900</strong></span>
+      <span>Write: <strong>info@bahiarestaurant.com</strong></span>
+    </div>
+
+    <!-- HEADER BAR (floating below) -->
+    <div class="header-bar">
+      <div class="logo">LOGO</div>
+      <div class="header-icons">
+        <div class="language-dropdown">
+          <button class="lang-btn">
+            <span id="current-lang">ES</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="lang-menu">
+            <li data-lang="es">Español</li>
+            <li data-lang="en">English</li>
+          </ul>
+        </div>
+        <div class="heart-icon">
+          <i class="fas fa-heart"></i>
+        </div>
+        <div class="menu-icon">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="header-hero">
+      <div class="hero-content">
+        <p class="offer-text">Special menu offers.</p>
+        <h1 class="main-title">Discover Our Menu</h1>
+      </div>
+    </div>
+
+    <!-- Overlay ahora dentro del header -->
+    <div class="overlay" id="overlay"></div>
+  </header>
+  <!-- Sidebar permanece fuera para cubrir toda la pantalla -->
+  <nav class="sidebar" id="sidebar">
+    <span class="close-btn">
+      <i class="fas fa-times"></i>
+    </span>
+    <ul id="sidebar-categories">
+  <li data-group="drinks"><i class="fas fa-mug-saucer"></i> Bebidas</li>
+  <li data-group="breakfast"><i class="fas fa-bread-slice"></i> Desayunos</li>
+  <li data-group="appetizers"><i class="fas fa-cheese"></i> Aperitivos</li>
+  <li data-group="soups"><i class="fas fa-utensil-spoon"></i> Sopas</li>
+  <li data-group="salads"><i class="fas fa-leaf"></i> Ensaladas</li>
+  <li data-group="main"><i class="fas fa-utensils"></i> Platos Fuertes</li>
+  <li data-group="specials"><i class="fas fa-star"></i> Especiales</li>
+  <li data-group="ecuadorian"><i class="fas fa-flag"></i> Típicos Ecuatorianos</li>
+  <li data-group="sides"><i class="fas fa-plus-square"></i> Adicionales</li>
+  <li data-group="dessert"><i class="fas fa-ice-cream"></i> Postres</li>
+  <li data-group="kids"><i class="fas fa-child"></i> Menú de Niños</li>
+  <li data-group="promo"><i class="fas fa-tags"></i> Promociones</li>
+</ul>
+  </nav>
+
+  <!-- SECCIÓN DE MENÚ DE PLATOS -->
+  <section class="menu-section">
+    <nav class="menu-categories">
+      <ul id="menu-categories-list">
+        <!-- Las subcategorías se cargan dinámicamente según el grupo seleccionado en el sidebar -->
+      </ul>
+    </nav>
+    <div class="menu-list-container">
+      <div id="menu-list" class="menu-list"></div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="main.js"></script>
+  <script src="menu-section.js"></script>
+</body>
+</html>
