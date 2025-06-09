@@ -335,9 +335,11 @@
 }
 @media (max-width: 650px) {
   .header-bar {
-    width: 98%;
-    padding: 10px 8px;
-    top: 9px;
+    width: 100%;         /* Fuerza a ocupar el ancho completo */
+    margin: 0;           /* Quita margen lateral */
+    padding: 10px 6px;   /* Ajusta padding, si quieres más compacto usa 6px */
+    top: 0;              /* Quita el top si no quieres que "flote" */
+    border-radius: 0;    /* Opcional, para que no haya bordes redondeados */
   }
   .header-top {
     flex-direction: column;
