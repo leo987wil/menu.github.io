@@ -1,3 +1,8 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .menu-header {
   background: #232323;
   color: #fff;
