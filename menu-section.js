@@ -123,7 +123,6 @@ function menuItemHTML(item) {
   let isValid = !isNaN(cash);
   let card = isValid ? (cash * 1.04).toFixed(2) : null;
 
-  // Formateo para entero y decimal
   function priceFormat(num) {
     let [entero, decimal] = num.split('.');
     return `${entero}<span class="decimal">.${decimal || '00'}</span>`;
@@ -136,7 +135,7 @@ function menuItemHTML(item) {
         <div class="menu-item-title">${item.title}</div>
         <div class="menu-item-desc">${item.desc}</div>
       </div>
-      <div class="menu-item-price">
+      <div class="menu-item-price-row">
         ${
           isValid
             ? `<div class="price-block">
