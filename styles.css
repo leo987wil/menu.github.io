@@ -1,12 +1,19 @@
+/* ==========================================================
+   RESET Y CONFIGURACIÓN GLOBAL
+   ========================================================== */
 html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat', Arial, sans-serif;
 }
+
+/* ==========================================================
+   HEADER Y HERO
+   ========================================================== */
 .menu-header {
   background: #232323;
   color: #fff;
-  font-family: 'Montserrat', Arial, sans-serif;
   position: relative;
   background: url("imagenes/background-header.jpg") center/cover no-repeat;
   z-index: 10;
@@ -15,10 +22,12 @@ html, body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); /* Oscurece el fondo */
   z-index: 1;
   pointer-events: none;
 }
+
+/* --- Barra superior de contacto --- */
 .header-top {
   display: flex;
   justify-content: flex-end;
@@ -30,6 +39,8 @@ html, body {
   position: relative;
   z-index: 2;
 }
+
+/* --- Barra del header con logo e iconos --- */
 .header-bar {
   width: 75%;
   margin: 0 auto;
@@ -37,24 +48,26 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 32px 15px 32px;
+  padding: 15px 32px;
   position: relative;
   top: 25px;
   z-index: 2;
 }
+
 .logo {
   color: #C19D60;
   font-weight: 700;
   font-size: 24px;
   letter-spacing: 2px;
 }
+
 .header-icons {
   display: flex;
   align-items: center;
   gap: 18px;
 }
 
-/* Dropdown de idioma */
+/* --- Dropdown de idioma --- */
 .language-dropdown {
   position: relative;
   display: inline-block;
@@ -96,7 +109,8 @@ html, body {
 .language-dropdown.open .lang-menu {
   display: block;
 }
-/* Iconos del header */
+
+/* --- Iconos del header --- */
 .heart-icon i,
 .menu-icon i {
   color: #C19D60;
@@ -110,7 +124,7 @@ html, body {
   color: #fff;
 }
 
-/* ===== HERO SECTION ===== */
+/* --- Sección HERO (título y oferta) --- */
 .header-hero {
   height: 20vh;
   min-height: 250px;
@@ -139,7 +153,9 @@ html, body {
   color: white;
 }
 
-/* ===== SIDEBAR ===== */
+/* ==========================================================
+   SIDEBAR Y OVERLAY
+   ========================================================== */
 .overlay {
   display: none;
   position: absolute;
@@ -150,6 +166,8 @@ html, body {
   z-index: 99;
   transition: opacity 0.3s;
 }
+
+/* --- Menú lateral (sidebar de categorías) --- */
 .sidebar {
   position: fixed;
   top: 0;
@@ -163,6 +181,7 @@ html, body {
   display: flex;
   flex-direction: column;
   padding: 32px 18px 18px 18px;
+  scrollbar-width: none;
 }
 .sidebar.active {
   left: 0;
@@ -195,8 +214,12 @@ html, body {
 .sidebar li:hover {
   color: #C19D60;
 }
+/* Oculta la barra de desplazamiento del sidebar */
+.sidebar::-webkit-scrollbar { display: none; }
 
-/* ===== SECCIÓN MENÚ DE PLATOS ===== */
+/* ==========================================================
+   SECCIÓN MENÚ DE PLATOS
+   ========================================================== */
 .menu-section {
   background: #232323;
   padding: 48px 0 60px 0;
@@ -205,6 +228,8 @@ html, body {
   flex-direction: column;
   align-items: center;
 }
+
+/* --- Categorías horizontales (debajo del header) --- */
 .menu-categories {
   width: 100%;
   display: flex;
@@ -254,6 +279,8 @@ html, body {
   background: #C19D60;
   border-radius: 2px;
 }
+
+/* --- Contenedor de la lista de platos --- */
 .menu-list-container {
   max-width: 1120px;
   background: #313131;
@@ -261,6 +288,8 @@ html, body {
   border-radius: 4px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
+
+/* --- Estructura de columnas de platos --- */
 .menu-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -271,6 +300,8 @@ html, body {
   flex-direction: column;
   gap: 38px;
 }
+
+/* --- Ítem individual de menú (plato) --- */
 .menu-item {
   display: flex;
   align-items: flex-start;
@@ -283,6 +314,8 @@ html, body {
 .menu-item:last-child {
   border-bottom: none;
 }
+
+/* --- Imagen del plato --- */
 .menu-item-img {
   width: 38px;
   height: 38px;
@@ -292,6 +325,8 @@ html, body {
   margin-top: 2px;
   background: #171717;
 }
+
+/* --- Info textual del plato (nombre y descripción) --- */
 .menu-item-info {
   flex: 1;
 }
@@ -308,53 +343,43 @@ html, body {
   margin: 0;
   font-family: 'Montserrat', Arial, sans-serif;
 }
-.menu-item-price {
-  font-size: 15px;
-  color: #C19D60;
-  font-weight: 700;
-  position: absolute;
-  right: 0;
-  top: 8px;
-  font-family: 'Montserrat', Arial, sans-serif;
-}
 
-.menu-item-price {
+/* ==========================================================
+   BLOQUE DE PRECIOS (cash y tarjeta alineados)
+   ========================================================== */
+.menu-item-price-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-end;
-  gap: 6px;
+  gap: 20px;
+  min-width: 140px;
 }
-
 .price-block {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  margin-bottom: 2px;
+  align-items: center;
+  margin-bottom: 0;
 }
-
 .icon-cash, .icon-card {
   font-size: 14px;
   margin-bottom: -2px;
 }
-
 .icon-cash i {
   color: #ffe082;
 }
 .icon-card i {
   color: #81d4fa;
 }
-
 .price-cash, .price-card {
   font-size: 19px;
   font-weight: 700;
   color: #ffe082; /* cash */
   letter-spacing: -1px;
+  display: inline-block;
 }
-
 .price-card {
   color: #81d4fa;
 }
-
 .price-cash .decimal,
 .price-card .decimal {
   font-size: 11px;
@@ -363,14 +388,15 @@ html, body {
   margin-left: 1px;
   letter-spacing: 0;
 }
-
 .price-consult {
   color: #C19D60;
   font-size: 15px;
   font-weight: 700;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ==========================================================
+   RESPONSIVE (adaptación móvil y tablet)
+   ========================================================== */
 @media (max-width: 900px) {
   .header-bar {
     width: 99%;
@@ -392,11 +418,11 @@ html, body {
 }
 @media (max-width: 650px) {
   .header-bar {
-    width: 97%;         /* Fuerza a ocupar el ancho completo */
-    margin: 0;           /* Quita margen lateral */
-    padding: 10px 2vw 10px 2vw;   /* Ajusta padding, si quieres más compacto usa 6px */
-    top: 0;              /* Quita el top si no quieres que "flote" */
-    border-radius: 0;    /* Opcional, para que no haya bordes redondeados */
+    width: 97%;
+    margin: 0;
+    padding: 10px 2vw 10px 2vw;
+    top: 0;
+    border-radius: 0;
   }
   .header-top span:nth-child(2) {
     display: none;
@@ -435,12 +461,14 @@ html, body {
     justify-content: center;
     padding: 10px 5px;
   }
+  .menu-item-price-row {
+    min-width: unset;
+    gap: 12px;
+  }
 }
 
-/* ===== SCROLLBAR OCULTA EN SIDEBAR ===== */
-.sidebar {
-  scrollbar-width: none;
-}
-.sidebar::-webkit-scrollbar {
-  display: none;
-}
+/* ==========================================================
+   UTILIDADES EXTRA
+   ========================================================== */
+/* Oculta scroll en sidebar en navegadores Webkit */
+.sidebar::-webkit-scrollbar { display: none; }
