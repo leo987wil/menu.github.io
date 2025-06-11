@@ -346,6 +346,9 @@ html, body {
     top: 0;              /* Quita el top si no quieres que "flote" */
     border-radius: 0;    /* Opcional, para que no haya bordes redondeados */
   }
+  .header-top span:nth-child(2) {
+    display: none;
+  }
   .header-top {
     flex-direction: column;
     align-items: flex-start;
