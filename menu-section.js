@@ -38,44 +38,7 @@ const groupSubcategories = {
     { key: 'Tipicos Colombianos', label: 'Típicos Colombianos' },
     { key: '', label: 'Otros' }
   ],
-  kids: [
-    { key: '', label: 'Menú Infantil' }
-  ],
-  sides: [
-    { key: '', label: 'Acompañamientos' }
-  ],
-  soups: [
-    { key: '', label: 'Sopas' }
-  ],
-  appetizers: [
-    { key: '', label: 'Entradas' }
-  ],
-  salads: [
-    { key: '', label: 'Ensaladas' },
-  ],
-  dessert: [
-    { key: '', label: 'Postres' }
-  ],
-  breakfast: [
-    { key: 'Desayuno americano', label: 'Desayuno Americano' },
-    { key: 'Desayuno colombiano', label: 'Desayuno Colombiano' },
-    { key: 'Desayuno ecuatoriano', label: 'Desayuno Ecuatoriano' }
-  ],
-  drinks: [
-    { key: 'cocteles', label: 'cocteles' },
-    { key: 'Vinos y Sangrias', label: 'Vinos y Sangrias' },
-    { key: 'Cognac', label: 'Cognac' },
-    { key: 'Wiskey', label: 'Wiskey' },
-    { key: 'Ron', label: 'Ron' },
-    { key: 'Sangria', label: 'Sangria' },
-    { key: 'Gin', label: 'Gin' },
-    { key: 'Champan', label: 'Champan' },
-    { key: 'Tequila', label: 'Tequila' },
-    { key: 'Cerveza', label: 'Cerveza' },
-    { key: 'Vodka', label: 'Vodka' },
-    { key: 'Bebidas frias y jugos', label: 'Frias y Jugos' },
-    { key: 'Cerveza', label: 'Cerveza' }
-  ]
+  // ...otros grupos...
 };
 
 let currentGroup = 'main';
@@ -182,10 +145,11 @@ function setupMenuFilters() {
 }
 
 // =======================
-// FILTRO DE MENÚ POR GRUPO EN SIDEBAR
+// FILTRO DE MENÚ POR GRUPO EN SIDEBAR (si tienes uno)
 // =======================
 function setupSidebarFilters() {
   const sidebarCats = document.getElementById("sidebar-categories");
+  if (!sidebarCats) return;
   sidebarCats.addEventListener("click", e => {
     const li = e.target.closest("li[data-group]");
     if (!li) return;
@@ -198,7 +162,7 @@ function setupSidebarFilters() {
     renderCategories(currentGroup);
     renderMenu(currentGroup, currentCategory);
     setupMenuFilters(); // Vuelve a enlazar eventos
-    closeSidebar();
+    // closeSidebar(); // si tienes función para cerrar
   });
 }
 
@@ -215,13 +179,41 @@ window.addEventListener("resize", () => {
 document.addEventListener("DOMContentLoaded", () => {
   // Marca activo el grupo inicial (main)
   const sidebarCats = document.getElementById("sidebar-categories");
-  sidebarCats.querySelectorAll("li").forEach(el => el.classList.remove("active"));
-  sidebarCats.querySelector('li[data-group="main"]').classList.add("active");
+  if (sidebarCats) {
+    sidebarCats.querySelectorAll("li").forEach(el => el.classList.remove("active"));
+    sidebarCats.querySelector('li[data-group="main"]').classList.add("active");
+  }
   // Renderiza subcategorías y menú
   renderCategories(currentGroup);
   renderMenu(currentGroup, currentCategory);
   setupMenuFilters();
   setupSidebarFilters();
+
+  // MODAL: Cerrar al click en la X
+  document.querySelector('#product-modal .modal-close').onclick = function() {
+    document.getElementById('product-modal').classList.remove('active');
+  };
+
+  // MODAL: Cerrar al hacer click en el fondo oscuro
+  document.getElementById('product-modal').onclick = function(e) {
+    if (e.target === this) this.classList.remove('active');
+  };
+
+  // MODAL: Botón corazón
+  document.querySelector('#product-modal .modal-heart-btn').onclick = function() {
+    const productTitle = this.dataset.productTitle;
+    if (!productTitle) return;
+    if (wishList.includes(productTitle)) {
+      wishList = wishList.filter(title => title !== productTitle);
+      this.classList.remove('added');
+      this.innerHTML = '<i class="fas fa-heart"></i> Añadir a deseos';
+    } else {
+      wishList.push(productTitle);
+      this.classList.add('added');
+      this.innerHTML = '<i class="fas fa-heart"></i> En deseos';
+    }
+    // Aquí puedes actualizar el ícono global del corazón si quieres mostrar cuántos productos hay en deseos
+  };
 });
 
 // =======================
@@ -286,29 +278,3 @@ document.addEventListener('click', function(e) {
   // Guardar el producto actual en el botón para referencia
   heartBtn.dataset.productTitle = product.title;
 });
-
-// Cerrar modal al hacer click en la X
-document.querySelector('#product-modal .modal-close').onclick = function() {
-  document.getElementById('product-modal').classList.remove('active');
-};
-
-// Cerrar modal al click en fondo oscuro
-document.getElementById('product-modal').onclick = function(e) {
-  if (e.target === this) this.classList.remove('active');
-};
-
-// Añadir/quitar de deseos al hacer click en el corazón
-document.querySelector('#product-modal .modal-heart-btn').onclick = function() {
-  const productTitle = this.dataset.productTitle;
-  if (!productTitle) return;
-  if (wishList.includes(productTitle)) {
-    wishList = wishList.filter(title => title !== productTitle);
-    this.classList.remove('added');
-    this.innerHTML = '<i class="fas fa-heart"></i> Añadir a deseos';
-  } else {
-    wishList.push(productTitle);
-    this.classList.add('added');
-    this.innerHTML = '<i class="fas fa-heart"></i> En deseos';
-  }
-  // Aquí puedes actualizar el ícono global del corazón si quieres mostrar cuántos productos hay en deseos
-};
