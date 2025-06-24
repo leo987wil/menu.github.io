@@ -1,40 +1,29 @@
-// main.js
+// ===========================
+// MAIN.JS: Sidebar y selector de idioma
+// ===========================
 
-// Elementos del menú lateral y overlay
+// Sidebar: abrir/cerrar menú lateral
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('overlay');
 const menuIcon = document.querySelector('.menu-icon');
 const closeBtn = document.querySelector('.close-btn');
 
-// Mostrar el sidebar
 function openSidebar() {
-  sidebar.classList.add('active');
+  if (sidebar) sidebar.classList.add('active');
   if (overlay) overlay.style.display = 'block';
 }
-
-// Ocultar el sidebar
 function closeSidebar() {
-  sidebar.classList.remove('active');
+  if (sidebar) sidebar.classList.remove('active');
   if (overlay) overlay.style.display = 'none';
 }
+// Abrir/cerrar sidebar con iconos o overlay
+if (menuIcon) menuIcon.addEventListener('click', openSidebar);
+if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+if (overlay) overlay.addEventListener('click', closeSidebar);
+// Cerrar sidebar con ESC
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar(); });
 
-// Manejadores de eventos
-if (menuIcon) {
-  menuIcon.addEventListener('click', openSidebar);
-}
-if (closeBtn) {
-  closeBtn.addEventListener('click', closeSidebar);
-}
-if (overlay) {
-  overlay.addEventListener('click', closeSidebar);
-}
-
-// Opcional: Cerrar sidebar con la tecla Esc
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeSidebar();
-});
-
-// Selector de idioma
+// Selector de idioma (opcional)
 const langDropdown = document.querySelector('.language-dropdown');
 const langBtn = document.querySelector('.lang-btn');
 const langMenu = document.querySelector('.lang-menu');
@@ -46,20 +35,16 @@ if (langBtn) {
     langDropdown.classList.toggle('open');
   });
 }
-
 if (langMenu) {
   langMenu.addEventListener('click', (e) => {
     if (e.target.tagName === 'LI') {
       const selected = e.target.getAttribute('data-lang');
-      if (selected === 'en') {
-        currentLang.textContent = 'EN';
-      } else {
-        currentLang.textContent = 'ES';
-      }
+      if (selected === 'en') currentLang.textContent = 'EN';
+      else currentLang.textContent = 'ES';
       langDropdown.classList.remove('open');
     }
   });
 }
 document.addEventListener('click', () => {
-  langDropdown.classList.remove('open');
+  if (langDropdown) langDropdown.classList.remove('open');
 });
