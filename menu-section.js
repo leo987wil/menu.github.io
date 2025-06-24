@@ -166,6 +166,103 @@ function setupMenuFilters() {
   });
 }
 
+// ========== MODAL Y DESEOS ==========
+
+// Lista de productos en la wishlist
+let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+
+// Función para actualizar el badge del corazón
+function updateWishlistBadge() {
+  const badge = document.getElementById('wishlist-badge');
+  if (wishlist.length > 0) {
+    badge.style.display = 'flex';
+    badge.textContent = wishlist.length;
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+// Abre el modal de producto
+function openProductModal(product) {
+  document.getElementById('modal-img').src = product.img;
+  document.getElementById('modal-img').alt = product.title;
+  document.getElementById('modal-title').textContent = product.title;
+  document.getElementById('modal-desc').textContent = product.desc;
+
+  // Precios
+  let cash = parseFloat(product.price.replace('$', ''));
+  let isValid = !isNaN(cash);
+  let card = isValid ? (cash * 1.04).toFixed(2) : null;
+  function priceFormat(num) {
+    let [entero, decimal] = num.split('.');
+    return `${entero}<span class="decimal">.${decimal || '00'}</span>`;
+  }
+  document.getElementById('modal-price-row').innerHTML = isValid
+    ? `<div class="price-block">
+         <span class="icon-cash"><i class="fas fa-money-bill-wave"></i></span>
+         <span class="price-cash">$${priceFormat(cash.toFixed(2))}</span>
+       </div>
+       <div class="price-block">
+         <span class="icon-card"><i class="fas fa-credit-card"></i></span>
+         <span class="price-card">$${priceFormat(card)}</span>
+       </div>`
+    : `<span class="price-consult">Consultar</span>`;
+
+  // Botón de deseos
+  const btn = document.getElementById('modal-wishlist-btn');
+  const btnText = document.getElementById('wishlist-btn-text');
+  if (wishlist.includes(product.title)) {
+    btn.classList.add('added');
+    btnText.textContent = 'Agregado a deseos';
+  } else {
+    btn.classList.remove('added');
+    btnText.textContent = 'Agregar a deseos';
+  }
+  btn.onclick = function () {
+    if (wishlist.includes(product.title)) {
+      wishlist = wishlist.filter(item => item !== product.title);
+      btn.classList.remove('added');
+      btnText.textContent = 'Agregar a deseos';
+    } else {
+      wishlist.push(product.title);
+      btn.classList.add('added');
+      btnText.textContent = 'Agregado a deseos';
+    }
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    updateWishlistBadge();
+  };
+
+  // Mostrar el modal
+  document.getElementById('product-modal').classList.add('active');
+}
+
+// Cerrar modal
+document.getElementById('modal-close-btn').onclick = function() {
+  document.getElementById('product-modal').classList.remove('active');
+};
+// Cerrar modal al hacer click fuera del contenido
+document.getElementById('product-modal').onclick = function(e) {
+  if (e.target === this) this.classList.remove('active');
+};
+
+// ========== ABRIR MODAL AL CLIC EN PRODUCTO ==========
+
+document.addEventListener('click', function(e) {
+  const item = e.target.closest('.menu-item');
+  if (!item) return;
+  const title = item.querySelector('.menu-item-title').textContent;
+  const product = menuData.find(p => p.title === title);
+  if (!product) return;
+  openProductModal(product);
+});
+
+// ========== INICIALIZACIÓN ==========
+
+document.addEventListener("DOMContentLoaded", () => {
+  // ...tu inicialización base...
+  updateWishlistBadge();
+});
+
 // Maneja la selección de familias en el sidebar
 function setupSidebarFilters() {
   const sidebarCats = document.getElementById("sidebar-categories");
