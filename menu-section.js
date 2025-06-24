@@ -1,81 +1,23 @@
 // Datos de ejemplo para los productos
 const menuData = [
-  { group: 'main', category: 'Pastas', title: 'PENNE AL VODKA', desc: 'Delicioso plato típico, preparado con ingredientes de calidad.', price: '$14.6', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=80' },
-  { group: 'main', category: 'Pastas', title: 'ESPAGUETIS CON CAMARONES', desc: 'Plato con camarones preparados al gusto de la casa.', price: '$18.75', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=81' },
-  { group: 'kids', category: '', title: 'SALCHIPAPAS', desc: 'Delicioso plato típico, preparado con ingredientes de calidad.', price: '$14.6', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=82' },
-  { group: 'kids', category: '', title: 'CHICKEN NUGGETS', desc: 'Delicioso plato típico, preparado con ingredientes de calidad.', price: '$13', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=83' },
-  { group: 'kids', category: '', title: 'ALITAS DE POLLO', desc: 'Preparación especial de pollo acompañada de guarniciones al gusto.', price: '$12.5', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=84' },
-  { group: 'kids', category: '', title: 'DEDITOS DE POLLO', desc: 'Preparación especial de pollo acompañada de guarniciones al gusto.', price: '$10.4', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=85' },
-  { group: 'sides', category: '', title: 'PAPA CRIOLLA', desc: 'Delicioso plato típico, preparado con ingredientes de calidad.', price: '$10.4', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=86' },
-  { group: 'sides', category: '', title: 'MOTE LIMPIO', desc: 'Delicioso plato típico, preparado con ingredientes de calidad.', price: '$8.35', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=87' },
-  { group: 'sides', category: '', title: 'GUACAMOLE', desc: 'Delicioso plato típico, preparado con ingredientes de calidad.', price: '$8.35', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=88' },
-  { group: 'drinks', category: 'Cocteles', title: 'MOJITO', desc: 'Cóctel clásico preparado con los mejores licores y sabores frutales.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=334' },
-  { group: 'drinks', category: 'Cocteles', title: 'SUPER MOJITO', desc: 'Cóctel clásico preparado con los mejores licores y sabores frutales.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=335' },
-  { group: 'drinks', category: 'Cocteles', title: 'GRAND MARGARITA', desc: 'Cóctel clásico preparado con los mejores licores y sabores frutales.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=336' },
-  { group: 'drinks', category: 'Wiskey', title: 'JACK DANIELS', desc: 'Deliciosa bebida servida con los más altos estándares de calidad.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=338' },
-  { group: 'drinks', category: 'Wiskey', title: 'JAMESON 750ML', desc: 'Deliciosa bebida servida con los más altos estándares de calidad.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=338' },
-  { group: 'drinks', category: 'Wiskey', title: 'JAMESON L', desc: 'Deliciosa bebida servida con los más altos estándares de calidad.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=339' },
-  { group: 'drinks', category: 'Wiskey', title: 'JOHNNIE WALKER BLACK', desc: 'Whisky de alta calidad, perfecto para los conocedores.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=340' },
-  { group: 'drinks', category: 'Wiskey', title: 'JOHNNIE WALKER 18', desc: 'Whisky de alta calidad, perfecto para los conocedores.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=341' },
-  { group: 'drinks', category: 'Wiskey', title: 'JOHNNIE WALKER BLUE', desc: 'Whisky de alta calidad, perfecto para los conocedores.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=342' },
-  { group: 'drinks', category: 'Wiskey', title: 'JOHNNIE WALKER GOLD', desc: 'Whisky de alta calidad, perfecto para los conocedores.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=343' },
-  { group: 'drinks', category: 'Wiskey', title: 'THE MACALLAN 18 YR', desc: 'Deliciosa bebida servida con los más altos estándares de calidad.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=344' },
-  { group: 'drinks', category: 'Wiskey', title: 'THE MACALLAN 15YR', desc: 'Deliciosa bebida servida con los más altos estándares de calidad.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=345' },
-  { group: 'drinks', category: 'Wiskey', title: 'THE MACALLAN 12YR', desc: 'Deliciosa bebida servida con los más altos estándares de calidad.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=346' },
-  { group: 'drinks', category: 'Wiskey', title: 'OLD PARR', desc: 'Deliciosa bebida servida con los más altos estándares de calidad.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=347' },
-  { group: 'drinks', category: 'Bebidas frias y jugos', title: 'CORONA NON ALCOHOLIC', desc: 'Deliciosa bebida servida con los más altos estándares de calidad.', price: '$nan', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=348' },
+  // ... (tu array original de productos)
 ];
 
 // Subcategorías por grupo (adapta según tus grupos actuales)
 const groupSubcategories = {
-  main: [
-    { key: 'Pastas', label: 'Pastas' },
-    { key: 'Tipicos Ecuatorianos', label: 'Típicos Ecuatorianos' },
-    { key: 'Tipicos Colombianos', label: 'Típicos Colombianos' },
-    { key: '', label: 'Otros' }
-  ],
-  kids: [
-    { key: '', label: 'Menú Infantil' }
-  ],
-  sides: [
-    { key: '', label: 'Acompañamientos' }
-  ],
-  soups: [
-    { key: '', label: 'Sopas' }
-  ],
-  appetizers: [
-    { key: '', label: 'Entradas' }
-  ],
-  salads: [
-    { key: '', label: 'Ensaladas' },
-  ],
-  dessert: [
-    { key: '', label: 'Postres' }
-  ],
-  breakfast: [
-    { key: 'Desayuno americano', label: 'Desayuno Americano' },
-    { key: 'Desayuno colombiano', label: 'Desayuno Colombiano' },
-    { key: 'Desayuno ecuatoriano', label: 'Desayuno Ecuatoriano' }
-  ],
-  drinks: [
-    { key: 'cocteles', label: 'cocteles' },
-    { key: 'Vinos y Sangrias', label: 'Vinos y Sangrias' },
-    { key: 'Cognac', label: 'Cognac' },
-    { key: 'Wiskey', label: 'Wiskey' },
-    { key: 'Ron', label: 'Ron' },
-    { key: 'Sangria', label: 'Sangria' },
-    { key: 'Gin', label: 'Gin' },
-    { key: 'Champan', label: 'Champan' },
-    { key: 'Tequila', label: 'Tequila' },
-    { key: 'Cerveza', label: 'Cerveza' },
-    { key: 'Vodka', label: 'Vodka' },
-    { key: 'Bebidas frias y jugos', label: 'Frias y Jugos' },
-    { key: 'Cerveza', label: 'Cerveza' }
-  ]
+  // ... (tu objeto original)
 };
 
 let currentGroup = 'main';
 let currentCategory = groupSubcategories['main'][0].key;
+
+// --- SNIPPET NUEVO: wishlist GLOBAL Y FUNCIONES DE SINCRONIZACIÓN ---
+window.wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+function setWishlist(newWishlist) {
+  window.wishlist = newWishlist;
+  localStorage.setItem('wishlist', JSON.stringify(newWishlist));
+  updateWishlistBadge();
+}
 
 // Renderiza las subcategorías en la barra horizontal
 function renderCategories(group) {
@@ -168,15 +110,12 @@ function setupMenuFilters() {
 
 // ========== MODAL Y DESEOS ==========
 
-// Lista de productos en la wishlist
-let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-
 // Función para actualizar el badge del corazón
 function updateWishlistBadge() {
   const badge = document.getElementById('wishlist-badge');
-  if (wishlist.length > 0) {
+  if (window.wishlist.length > 0) {
     badge.style.display = 'flex';
-    badge.textContent = wishlist.length;
+    badge.textContent = window.wishlist.length;
   } else {
     badge.style.display = 'none';
   }
@@ -211,7 +150,7 @@ function openProductModal(product) {
   // Botón de deseos
   const btn = document.getElementById('modal-wishlist-btn');
   const btnText = document.getElementById('wishlist-btn-text');
-  if (wishlist.includes(product.title)) {
+  if (window.wishlist.includes(product.title)) {
     btn.classList.add('added');
     btnText.textContent = 'Agregado a deseos';
   } else {
@@ -219,17 +158,17 @@ function openProductModal(product) {
     btnText.textContent = 'Agregar a deseos';
   }
   btn.onclick = function () {
-    if (wishlist.includes(product.title)) {
-      wishlist = wishlist.filter(item => item !== product.title);
+    let newWishlist;
+    if (window.wishlist.includes(product.title)) {
+      newWishlist = window.wishlist.filter(item => item !== product.title);
       btn.classList.remove('added');
       btnText.textContent = 'Agregar a deseos';
     } else {
-      wishlist.push(product.title);
+      newWishlist = [...window.wishlist, product.title];
       btn.classList.add('added');
       btnText.textContent = 'Agregado a deseos';
     }
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
-    updateWishlistBadge();
+    setWishlist(newWishlist);
   };
 
   // Mostrar el modal
@@ -259,7 +198,6 @@ document.addEventListener('click', function(e) {
 // ========== INICIALIZACIÓN ==========
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ...tu inicialización base...
   updateWishlistBadge();
 });
 
