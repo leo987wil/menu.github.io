@@ -1,6 +1,6 @@
 // Datos de ejemplo para los productos
 const menuData = [
- { group: 'main', category: 'Pastas', title: 'PENNE AL VODKA', desc: 'Delicioso plato típico, preparado con ingredientes de calidad.', price: '$14.6', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=80' },
+  { group: 'main', category: 'Pastas', title: 'PENNE AL VODKA', desc: 'Delicioso plato típico, preparado con ingredientes de calidad.', price: '$14.6', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=80' },
   { group: 'main', category: 'Pastas', title: 'ESPAGUETIS CON CAMARONES', desc: 'Plato con camarones preparados al gusto de la casa.', price: '$18.75', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=81' },
   { group: 'kids', category: '', title: 'SALCHIPAPAS', desc: 'Delicioso plato típico, preparado con ingredientes de calidad.', price: '$14.6', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=82' },
   { group: 'kids', category: '', title: 'CHICKEN NUGGETS', desc: 'Delicioso plato típico, preparado con ingredientes de calidad.', price: '$13', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=83' },
@@ -116,7 +116,14 @@ function renderMenu(group = 'main', category) {
   }
   menuList.innerHTML = html;
 }
+
+// MODIFICADO: Muestra precios cash y tarjeta
 function menuItemHTML(item) {
+  // Extraer valor numérico del precio
+  let cash = parseFloat(item.price.replace('$', ''));
+  let isValid = !isNaN(cash);
+  let card = isValid ? (cash * 1.04).toFixed(2) : null;
+
   return `
     <div class="menu-item">
       <img class="menu-item-img" src="${item.img}" alt="${item.title}">
@@ -124,7 +131,14 @@ function menuItemHTML(item) {
         <div class="menu-item-title">${item.title}</div>
         <div class="menu-item-desc">${item.desc}</div>
       </div>
-      <div class="menu-item-price">${item.price}</div>
+      <div class="menu-item-price">
+        ${
+          isValid
+            ? `<span class="price-cash">$${cash.toFixed(2)} <small>Cash</small></span>
+               <span class="price-card">$${card} <small>Tarjeta</small></span>`
+            : `<span class="price-consult">Consultar</span>`
+        }
+      </div>
     </div>
   `;
 }
