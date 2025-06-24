@@ -318,6 +318,58 @@ html, body {
   font-family: 'Montserrat', Arial, sans-serif;
 }
 
+.menu-item-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.price-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 2px;
+}
+
+.icon-cash, .icon-card {
+  font-size: 14px;
+  margin-bottom: -2px;
+}
+
+.icon-cash i {
+  color: #ffe082;
+}
+.icon-card i {
+  color: #81d4fa;
+}
+
+.price-cash, .price-card {
+  font-size: 19px;
+  font-weight: 700;
+  color: #ffe082; /* cash */
+  letter-spacing: -1px;
+}
+
+.price-card {
+  color: #81d4fa;
+}
+
+.price-cash .decimal,
+.price-card .decimal {
+  font-size: 11px;
+  vertical-align: super;
+  font-weight: 400;
+  margin-left: 1px;
+  letter-spacing: 0;
+}
+
+.price-consult {
+  color: #C19D60;
+  font-size: 15px;
+  font-weight: 700;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .header-bar {
