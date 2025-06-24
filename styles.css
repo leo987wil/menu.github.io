@@ -61,10 +61,9 @@ html, body {
   letter-spacing: 2px;
 }
 
-.header-icons {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+.heart-icon {
+  position: relative;
+  display: inline-block;
 }
 
 /* --- Dropdown de idioma --- */
