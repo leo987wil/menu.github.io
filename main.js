@@ -53,7 +53,7 @@ document.getElementById('wishlist-modal').onclick = function(e) {
 
 // Rendeiza la lista de deseos en el modal
 function renderWishlistModal() {
-  let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+  let wishlist = window.wishlist || JSON.parse(localStorage.getItem('wishlist') || '[]');
   const listDiv = document.getElementById('wishlist-list');
   const emptyDiv = document.getElementById('wishlist-modal-empty');
   listDiv.innerHTML = '';
@@ -64,7 +64,7 @@ function renderWishlistModal() {
     emptyDiv.style.display = 'none';
   }
   // Buscar los productos completos en menuData (necesitamos el array global)
-  if (typeof menuData === 'undefined') return; // Si menuData no está disponible, no hacer nada
+  if (typeof menuData === 'undefined') return;
   wishlist.forEach(title => {
     const product = menuData.find(p => p.title === title);
     if (!product) return;
@@ -78,23 +78,25 @@ function renderWishlistModal() {
       </div>
       <button class="wishlist-remove-btn" title="Quitar de deseos"><i class="fas fa-trash"></i></button>
     `;
-// Quitar de wishlist al hacer click en el botón
-itemDiv.querySelector('.wishlist-remove-btn').onclick = function() {
-  // Elimina del localStorage
-  let current = JSON.parse(localStorage.getItem('wishlist') || '[]');
-  current = current.filter(t => t !== product.title);
-  localStorage.setItem('wishlist', JSON.stringify(current));
-  // Sincroniza la variable global wishlist
-  if (typeof window.wishlist !== "undefined") window.wishlist = current;
-  renderWishlistModal();
-  // Actualiza el badge
-  if (typeof updateWishlistBadge === 'function') updateWishlistBadge();
-  // Si estás en el modal de producto, refresca el botón de wishlist
-  if (document.getElementById('modal-title') && document.getElementById('modal-title').textContent === product.title) {
-    document.getElementById('modal-wishlist-btn').classList.remove('added');
-    document.getElementById('wishlist-btn-text').textContent = 'Agregar a deseos';
-  }
-};
+    // Quitar de wishlist al hacer click en el botón
+    itemDiv.querySelector('.wishlist-remove-btn').onclick = function() {
+      const newWishlist = wishlist.filter(t => t !== product.title);
+      if (typeof setWishlist === 'function') setWishlist(newWishlist);
+      else {
+        window.wishlist = newWishlist;
+        localStorage.setItem('wishlist', JSON.stringify(newWishlist));
+        if (typeof updateWishlistBadge === 'function') updateWishlistBadge();
+      }
+      renderWishlistModal();
+      // Si estás en el modal de producto, refresca el botón de wishlist
+      if (document.getElementById('modal-title') && document.getElementById('modal-title').textContent === product.title) {
+        document.getElementById('modal-wishlist-btn').classList.remove('added');
+        document.getElementById('wishlist-btn-text').textContent = 'Agregar a deseos';
+      }
+    };
+    listDiv.appendChild(itemDiv);
+  });
+}
 
 // Selector de idioma
 const langDropdown = document.querySelector('.language-dropdown');
