@@ -51,8 +51,9 @@ document.getElementById('wishlist-modal').onclick = function(e) {
   if (e.target === this) this.classList.remove('active');
 };
 
-// Rendeiza la lista de deseos en el modal
+// Renderiza la lista de deseos en el modal
 function renderWishlistModal() {
+  // Toma la variable global window.wishlist, o del localStorage como respaldo
   let wishlist = window.wishlist || JSON.parse(localStorage.getItem('wishlist') || '[]');
   const listDiv = document.getElementById('wishlist-list');
   const emptyDiv = document.getElementById('wishlist-modal-empty');
@@ -63,8 +64,11 @@ function renderWishlistModal() {
   } else {
     emptyDiv.style.display = 'none';
   }
-  // Buscar los productos completos en menuData (necesitamos el array global)
-  if (typeof menuData === 'undefined') return;
+  // menuData debe estar definido globalmente (asegúrate de que menu-section.js carga antes)
+  if (typeof menuData === 'undefined') {
+    listDiv.innerHTML = '<p style="color:#fff">No se encontró menuData</p>';
+    return;
+  }
   wishlist.forEach(title => {
     const product = menuData.find(p => p.title === title);
     if (!product) return;
@@ -80,6 +84,7 @@ function renderWishlistModal() {
     `;
     // Quitar de wishlist al hacer click en el botón
     itemDiv.querySelector('.wishlist-remove-btn').onclick = function() {
+      // Elimina el producto de la global window.wishlist y actualiza localStorage
       const newWishlist = wishlist.filter(t => t !== product.title);
       if (typeof setWishlist === 'function') setWishlist(newWishlist);
       else {
@@ -89,7 +94,10 @@ function renderWishlistModal() {
       }
       renderWishlistModal();
       // Si estás en el modal de producto, refresca el botón de wishlist
-      if (document.getElementById('modal-title') && document.getElementById('modal-title').textContent === product.title) {
+      if (
+        document.getElementById('modal-title') &&
+        document.getElementById('modal-title').textContent === product.title
+      ) {
         document.getElementById('modal-wishlist-btn').classList.remove('added');
         document.getElementById('wishlist-btn-text').textContent = 'Agregar a deseos';
       }
