@@ -78,22 +78,23 @@ function renderWishlistModal() {
       </div>
       <button class="wishlist-remove-btn" title="Quitar de deseos"><i class="fas fa-trash"></i></button>
     `;
-    // Quitar de wishlist al hacer click en el botón
-    itemDiv.querySelector('.wishlist-remove-btn').onclick = function() {
-      wishlist = wishlist.filter(t => t !== product.title);
-      localStorage.setItem('wishlist', JSON.stringify(wishlist));
-      renderWishlistModal();
-      // Actualiza también el badge
-      if (typeof updateWishlistBadge === 'function') updateWishlistBadge();
-      // Si estás en el modal de producto, refresca el botón de wishlist
-      if (document.getElementById('modal-title') && document.getElementById('modal-title').textContent === product.title) {
-        document.getElementById('modal-wishlist-btn').classList.remove('added');
-        document.getElementById('wishlist-btn-text').textContent = 'Agregar a deseos';
-      }
-    };
-    listDiv.appendChild(itemDiv);
-  });
-}
+// Quitar de wishlist al hacer click en el botón
+itemDiv.querySelector('.wishlist-remove-btn').onclick = function() {
+  // Elimina del localStorage
+  let current = JSON.parse(localStorage.getItem('wishlist') || '[]');
+  current = current.filter(t => t !== product.title);
+  localStorage.setItem('wishlist', JSON.stringify(current));
+  // Sincroniza la variable global wishlist
+  if (typeof window.wishlist !== "undefined") window.wishlist = current;
+  renderWishlistModal();
+  // Actualiza el badge
+  if (typeof updateWishlistBadge === 'function') updateWishlistBadge();
+  // Si estás en el modal de producto, refresca el botón de wishlist
+  if (document.getElementById('modal-title') && document.getElementById('modal-title').textContent === product.title) {
+    document.getElementById('modal-wishlist-btn').classList.remove('added');
+    document.getElementById('wishlist-btn-text').textContent = 'Agregar a deseos';
+  }
+};
 
 // Selector de idioma
 const langDropdown = document.querySelector('.language-dropdown');
