@@ -31,8 +31,9 @@
             <li data-lang="en">English</li>
           </ul>
         </div>
-        <div class="heart-icon">
+        <div class="heart-icon" id="heart-icon">
           <i class="fas fa-heart"></i>
+          <span class="wishlist-badge" id="wishlist-badge" style="display:none">0</span>
         </div>
         <div class="menu-icon">
           <i class="fas fa-bars"></i>
@@ -83,6 +84,32 @@
       <div id="menu-list" class="menu-list"></div>
     </div>
   </section>
+
+  <!-- MODAL DE PRODUCTO -->
+  <div id="product-modal" class="product-modal">
+    <div class="product-modal-content">
+      <button class="modal-close" id="modal-close-btn"><i class="fas fa-times"></i></button>
+      <img class="modal-img" id="modal-img" src="" alt="">
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-price-row" id="modal-price-row"></div>
+      <button class="modal-wishlist-btn" id="modal-wishlist-btn">
+        <i class="fas fa-heart"></i> <span id="wishlist-btn-text">Agregar a deseos</span>
+      </button>
+    </div>
+  </div>
+	
+	<!-- MODAL DE WISHLIST -->
+<div id="wishlist-modal" class="wishlist-modal">
+  <div class="wishlist-modal-content">
+    <button class="wishlist-modal-close" id="wishlist-modal-close-btn"><i class="fas fa-times"></i></button>
+    <h2 class="wishlist-modal-title">Lista de deseos</h2>
+    <div id="wishlist-list" class="wishlist-list"></div>
+    <div class="wishlist-modal-empty" id="wishlist-modal-empty" style="display:none;">
+      ¡No tienes productos en tu lista de deseos!
+    </div>
+  </div>
+</div>
 
   <!-- Scripts -->
   <script src="main.js"></script>
