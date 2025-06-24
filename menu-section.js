@@ -124,6 +124,12 @@ function menuItemHTML(item) {
   let isValid = !isNaN(cash);
   let card = isValid ? (cash * 1.04).toFixed(2) : null;
 
+  // Función para separar entero y decimal
+  function priceFormat(num) {
+    let [entero, decimal] = num.split('.');
+    return `${entero}<span class="decimal">.${decimal || '00'}</span>`;
+  }
+
   return `
     <div class="menu-item">
       <img class="menu-item-img" src="${item.img}" alt="${item.title}">
@@ -134,8 +140,14 @@ function menuItemHTML(item) {
       <div class="menu-item-price">
         ${
           isValid
-            ? `<span class="price-cash">$${cash.toFixed(2)} <small>Cash</small></span>
-               <span class="price-card">$${card} <small>Tarjeta</small></span>`
+            ? `<div class="price-block">
+                  <span class="icon-cash"><i class="fas fa-money-bill-wave"></i></span>
+                  <span class="price-cash">$${priceFormat(cash.toFixed(2))}</span>
+               </div>
+               <div class="price-block">
+                  <span class="icon-card"><i class="fas fa-credit-card"></i></span>
+                  <span class="price-card">$${priceFormat(card)}</span>
+               </div>`
             : `<span class="price-consult">Consultar</span>`
         }
       </div>
