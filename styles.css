@@ -49,9 +49,10 @@ html, body {
   align-items: center;
   justify-content: space-between;
   padding: 15px 32px;
-  position: relative;
-  top: 25px;
-  z-index: 2;
+  position: sticky;
+  top: 0;
+  z-index: 1002;
+   background: #232323;
 }
 
 .logo {
