@@ -1,10 +1,11 @@
 // =======================
-// DATOS DE PRODUCTOS DE MENÚ
+// DATOS DE PRODUCTOS DE MENÚ (puedes agregar más)
 // =======================
-// Puedes agregar más productos a este array.
 const menuData = [
-  { group: 'main', category: 'Pastas', title: 'PENNE AL VODKA', desc: 'Delicioso plato típico, preparado con ingredientes de calidad.', price: '$14.6', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=81' },
-  // ... agrega más productos aquí ...
+  { group: 'main', category: 'Pastas', title: 'PENNE AL VODKA', desc: 'Delicioso plato típico preparado con ingredientes de calidad.', price: '$14.60', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=81' },
+  { group: 'main', category: 'Pastas', title: 'ESPAGUETIS CON CAMARONES', desc: 'Plato con camarones preparados al gusto de la casa.', price: '$18.75', img: 'https://images.unsplash.com/photo-1516684669134-de6f27e8b44b?auto=format&fit=facearea&w=256&q=81' },
+  { group: 'main', category: 'Pastas', title: 'FETTUCCINE ALFREDO', desc: 'Pasta cremosa con salsa Alfredo tradicional.', price: '$16.20', img: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=facearea&w=256&q=82' },
+  { group: 'main', category: 'Pastas', title: 'RAVIOLI DE QUESO', desc: 'Raviolis rellenos de queso, en salsa de tomate.', price: '$15.00', img: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=facearea&w=256&q=83' },
 ];
 
 // =======================
@@ -13,7 +14,7 @@ const menuData = [
 const groupSubcategories = {
   main: [
     { key: 'Pastas', label: 'Pastas' },
-    // ... más subcategorías si quieres ...
+    // Puedes agregar más categorías aquí si tienes más variedad
   ]
 };
 
@@ -144,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // =======================
 // MODAL DE PRODUCTO: ABRIR AL HACER CLICK EN ITEM
 // =======================
-// Delegación para que funcione con elementos dinámicos
 document.addEventListener('click', function(e) {
   const target = e.target.closest('.menu-item');
   if (!target) return;
